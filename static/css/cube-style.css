@@ -1,0 +1,190 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.container {
+    background: #16213e;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 500px;
+    border: 1px solid #0f3460;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #e94560;
+}
+
+.instructions {
+    font-size: 14px;
+    color: #a7a9c0;
+    margin-bottom: 30px;
+}
+
+.scene {
+    width: 200px;
+    height: 200px;
+    perspective: 1000px;
+    margin: 30px auto;
+    cursor: grab;
+}
+
+.cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-33deg) rotateY(-45deg);
+    /* The transition is removed here; JS handles animation */
+}
+
+.cube-face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    border: 1px solid #3a3a5c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.face-label {
+    position: absolute;
+    top: -25px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #a7a9c0;
+    text-shadow: 0 0 5px #000;
+}
+
+/* Cube face positions */
+.F { transform: rotateY(  0deg) translateZ(100px); }
+.B { transform: rotateY(180deg) translateZ(100px); }
+.R { transform: rotateY( 90deg) translateZ(100px); }
+.L { transform: rotateY(-90deg) translateZ(100px); }
+.U { transform: rotateX( 90deg) translateZ(100px); }
+.D { transform: rotateX(-90deg) translateZ(100px); }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 8px;
+    padding: 8px;
+    width: 100%;
+    height: 100%;
+}
+
+.sticker {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2), 0 2px 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.15s ease;
+}
+
+.sticker:hover {
+    transform: scale(1.1);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 15px rgba(233, 69, 96, 0.5);
+}
+
+/* Sticker colors via JS using data-value attribute */
+.sticker[data-value="W"] { background-color: #f5f6fa; }
+.sticker[data-value="R"] { background-color: #e84118; }
+.sticker[data-value="G"] { background-color: #4cd137; }
+.sticker[data-value="Y"] { background-color: #fbc531; }
+.sticker[data-value="O"] { background-color: #e67e22; }
+.sticker[data-value="B"] { background-color: #0097e6; }
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #e94560;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+}
+
+button:hover {
+    background-color: #ff79a6;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(233, 69, 96, 0.6);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background-color: #575fcf;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+#resetBtn {
+    background-color: #575fcf;
+    box-shadow: 0 4px 15px rgba(87, 95, 207, 0.4);
+}
+
+#resetBtn:hover {
+    background-color: #8e44ad;
+    box-shadow: 0 6px 20px rgba(87, 95, 207, 0.6);
+}
+
+#output-container {
+    margin-top: 30px;
+    background: #0f3460;
+    color: #e0e0e0;
+    padding: 15px 20px;
+    border-radius: 8px;
+    text-align: left;
+    min-height: 100px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+h3 {
+    margin: 0 0 10px 0;
+    color: #e94560;
+    font-size: 16px;
+    border-bottom: 1px solid #575fcf;
+    padding-bottom: 8px;
+}
+
+#output {
+    font-size: 14px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 150px;
+    overflow-y: auto;
+}

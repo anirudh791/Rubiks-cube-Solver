@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rubik's Cube Solver</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cube-style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Rubik's Cube Solver</h1>
+        <p class="instructions">Click the stickers to set the colors for each face, then click "Solve Cube".</p>
+
+        <div class="scene">
+            <div class="cube">
+                {% for face in ['U', 'L', 'F', 'R', 'B', 'D'] %}
+                <div class="cube-face {{ face }}">
+                    <div class="face-label">{{ face }}</div>
+                    <div class="grid" data-face="{{ face }}"></div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="controls">
+            <button type="button" id="solveBtn">Solve Cube</button>
+            <button type="button" id="resetBtn">Reset Cube</button>
+        </div>
+
+        <div id="output-container">
+            <h3>Solution Steps:</h3>
+            <pre id="output"></pre>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/cube-interactive.js') }}"></script>
+</body>
+</html>
